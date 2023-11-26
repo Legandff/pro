@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+
+        .color-selector {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #aaa;
+        }
+
+        .description {
+            margin-top: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Product Selector</h1>
+
+    <div class="product-container">
+        <div class="product" id="product1">
+            <h2>Product A</h2>
+            <div class="color-selector" onclick="selectColor('product1')">
+                <div class="color-option" style="background-color: #ff0000;"></div>
+                <div class="color-option" style="background-color: #00ff00;"></div>
+                <div class="color-option" style="background-color: #0000ff;"></div>
+                <div class="color-option" style="background-color: #ffff00;"></div>
+            </div>
+            <div class="description" id="description1">Description for Product A</div>
+        </div>
+
+        <div class="product" id="product2">
+            <h2>Product B</h2>
+            <div class="color-selector" onclick="selectColor('product2')">
+                <div class="color-option" style="background-color: #ff6600;"></div>
+                <div class="color-option" style="background-color: #6600cc;"></div>
+                <div class="color-option" style="background-color: #00cc66;"></div>
+                <div class="color-option" style="background-color: #cc0066;"></div>
+            </div>
+            <div class="description" id="description2">Description for Product B</div>
+        </div>
+
+        <div class="product" id="product3">
+            <h2>Product C</h2>
+            <div class="color-selector" onclick="selectColor('product3')">
+                <div class="color-option" style="background-color: #996633;"></div>
+                <div class="color-option" style="background-color: #339966;"></div>
+                <div class="color-option" style="background-color: #663399;"></div>
+                <div class="color-option" style="background-color: #993366;"></div>
+            </div>
+            <div class="description" id="description3">Description for Product C</div>
+        </div>
+    </div>
+
+    <script>
+        function selectColor(productId) {
+            var productElement = document.getElementById(productId);
+            var colorOptions = productElement.getElementsByClassName('color-option');
+            var descriptionElement = document.getElementById('description' + productId.charAt(productId.length - 1));
+
+            for (var i = 0; i < colorOptions.length; i++) {
+                colorOptions[i].style.border = '2px solid #aaa';
+            }
+
+            event.target.style.border = '2px solid #333';
+            descriptionElement.innerHTML = getDescription(productId, event.target.style.backgroundColor);
+        }
+
+        function getDescription(productId, color) {
+            // Add logic to fetch the description based on the product and color
+            // For simplicity, using a hardcoded description in this example
+            return 'Description for ' + productId + ' in color ' + color;
+        }
+    </script>
+
+</body>
+</html>
